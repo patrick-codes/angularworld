@@ -89,9 +89,12 @@
 
 <div class="signup-container" id="signupBox">
   <div class="spinner" id="spinner"></div>
-  <h2>Create Account</h2>
+  <h2>Create Membership</h2>
   <form id="signupForm">
-    <input type="text" id="username" placeholder="Username" required />
+    <input type="text" id="fullname" placeholder="Full Name" required />
+    <input type="text" id="gender" placeholder="Gender" required />
+    <input type="text" id="age" placeholder="Age" required />
+    <input type="text" id="address" placeholder="Address" required />
     <input type="email" id="email" placeholder="Email" required />
     <input type="password" id="password" placeholder="Password" required />
     <button type="submit">Sign Up</button>
@@ -110,13 +113,16 @@
     signupBox.classList.add('loading');
 
     const payload = {
-      username: document.getElementById('username').value.trim(),
+      fullname: document.getElementById('fullname').value.trim(),
+      gender: document.getElementById('gender').value.trim(),
+      age: document.getElementById('age').value.trim(),
+      address: document.getElementById('address').value.trim(),
       email: document.getElementById('email').value.trim(),
       password: document.getElementById('password').value.trim(),
     };
 
     try {
-      const response = await fetch('https://help-app-backend-x50n.onrender.com/api/events/auth/signup', {
+      const response = await fetch('https://angular-world-backend.onrender.com/api/members/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

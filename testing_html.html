@@ -76,35 +76,34 @@
 <div id="output">Loading...</div>
 
 <script>
-  fetch('https://help-app-backend-x50n.onrender.com/api/events/')
+  fetch('https://angular-world-backend.onrender.com/api/members/')
     .then(response => response.json())
     .then(data => {
-      const output = document.getElementById('output');
-      output.innerHTML = '';
+  const output = document.getElementById('output');
+  output.innerHTML = '';
 
-      if (Array.isArray(data) && data.length > 0) {
-        data.forEach(event => {
-          const card = document.createElement('div');
-          card.className = 'event-card';
+  const members = data.memberships; 
 
-          card.innerHTML = `
-            <div class="event-title">${event.title}</div>
-            <div class="event-subtitle">${event.subtitle}</div>
-            <div class="event-date"><strong>Date:</strong> ${event.date}</div>
-            <div class="event-venue"><strong>Venue:</strong> ${event.venue}</div>
-            <a href="#" class="btn">Register</a>
-          `;
+  if (Array.isArray(members) && members.length > 0) {
+    members.forEach(member => {
+      const card = document.createElement('div');
+      card.className = 'event-card';
 
-          output.appendChild(card);
-        });
-      } else {
-        output.innerText = 'No events found.';
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      document.getElementById('output').innerText = 'Failed to fetch data';
+      card.innerHTML = `
+        <div class="event-title">${member.fullname}</div>
+        <div class="event-subtitle">Age: ${member.age}</div>
+        <div class="event-date"><strong>Address:</strong> ${member.address}</div>
+        <div class="event-venue"><strong>Gender:</strong> ${member.gender}</div>
+        <div class="event-venue"><strong>Email:</strong> ${member.email}</div>
+      `;
+
+      output.appendChild(card);
     });
+  } else {
+    output.innerText = 'No members found.';
+  }
+})
+
 </script>
 
 </body>
