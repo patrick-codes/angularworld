@@ -79,7 +79,7 @@
             console.log({ email, amount });
 
             try {
-                const res = await fetch(' https://e131-41-66-202-130.ngrok-free.app/pay', {
+                const res = await fetch('https://angular-world-backend.onrender.com/pay', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, amount })
